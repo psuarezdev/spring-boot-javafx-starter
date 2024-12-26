@@ -43,6 +43,18 @@ spring:
       ddl-auto: update
 ```
 
+### Add JavaFX Library  
+- Navigate to: **Project Structure** > **Libraries** > **Add**  
+- Select the folder for: `javafx-sdk-21.0.5`  
+- Ensure the library is properly linked to avoid runtime errors. 
+
+### Run the Program  
+When executing the program, add the following VM options to ensure JavaFX modules are loaded:  
+
+```shell
+--module-path "javafx-sdk-21.0.5/lib" --add-modules javafx.controls,javafx.fxml
+```
+
 ---
 
 ## Database Settings:
