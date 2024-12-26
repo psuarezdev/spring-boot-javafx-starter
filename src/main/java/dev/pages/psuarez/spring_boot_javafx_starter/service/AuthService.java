@@ -1,6 +1,7 @@
 package dev.pages.psuarez.spring_boot_javafx_starter.service;
 
 import dev.pages.psuarez.spring_boot_javafx_starter.model.User;
+import dev.pages.psuarez.spring_boot_javafx_starter.model.UserSession;
 import dev.pages.psuarez.spring_boot_javafx_starter.util.Helpers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+  private final UserSession userSession;
   private final UserService userService;
   private final PasswordEncoder passwordEncoder;
 
@@ -22,23 +24,24 @@ public class AuthService {
       throw new CredentialException("Wrong credentials");
     }
 
+    userSession.setUser(user);
     return user;
   }
 
   public User register(String firstName, String lastName, String email, String password) throws CredentialException {
-    if(firstName.trim().length() < 3) {
+    if (firstName.trim().length() < 3) {
       throw new CredentialException("First Name must have at least 3 characters long");
     }
 
-    if(lastName.trim().length() < 3) {
+    if (lastName.trim().length() < 3) {
       throw new CredentialException("Last Name must have at least 3 characters long");
     }
 
-    if(!Helpers.isEmailValid(email)) {
+    if (!Helpers.isEmailValid(email)) {
       throw new CredentialException("Invalid email address");
     }
 
-    if(!Helpers.isPasswordValid(password)) {
+    if (!Helpers.isPasswordValid(password)) {
       throw new CredentialException("Password must have at least 8 characters long, a capital letter and a number");
     }
 
@@ -50,13 +53,16 @@ public class AuthService {
 
     String passwordHash = passwordEncoder.encode(password);
 
-    User user = User.builder()
-      .firstName(firstName)
-      .lastName(lastName)
-      .email(email)
-      .password(passwordHash)
-      .build();
+    User user = userService.save(
+      User.builder()
+        .firstName(firstName)
+        .lastName(lastName)
+        .email(email)
+        .password(passwordHash)
+        .build()
+    );
 
-    return userService.save(user);
+    userSession.setUser(user);
+    return user;
   }
 }
