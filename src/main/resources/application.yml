@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: spring-boot-javafx-starter
+  datasource:
+    url: jdbc:postgresql://localhost:5432/<db_name>
+    username: <db_user>
+    password: <db_passwd>
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update

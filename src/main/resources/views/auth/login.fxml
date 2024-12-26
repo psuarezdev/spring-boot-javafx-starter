@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="316.0" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.pages.psuarez.spring_boot_javafx_starter.controller.auth.LoginController">
+   <children>
+      <Label text="Sign In">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <VBox prefHeight="55.0" prefWidth="276.0">
+         <children>
+            <Label prefHeight="24.0" text="Email address" />
+            <TextField fx:id="email" />
+         </children>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="600.0">
+         <children>
+            <Label prefHeight="24.0" prefWidth="50.0" text="Password" />
+            <PasswordField fx:id="password" />
+         </children>
+      </VBox>
+       <Button mnemonicParsing="false" onAction="#onSumbit" prefHeight="26.0" prefWidth="278.0" text="Submit">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Button>
+      <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="276.0" spacing="5.0">
+         <children>
+            <Label text="Not a member?" />
+            <Label onMouseClicked="#goToSignUp" style="-fx-text-fill: #33a2ff;" text="Sign Up" />
+         </children>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
+</VBox>
