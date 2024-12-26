@@ -43,7 +43,6 @@ public class LoginController {
     } catch (CredentialException e) {
       Helpers.showAlert(Alert.AlertType.ERROR, "Error", null, e.getMessage());
     } catch (IOException e) {
-      System.out.println(e.getMessage());
       Helpers.showAlert(Alert.AlertType.ERROR, "Error", null, "Error navigating to home");
     }
   }
